@@ -1,0 +1,277 @@
+                                   DAY 10
+CONSTRAINTS
+-----------------
+
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+
+| deptno | dname      | loc      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     40 | OPERATIONS | BOSTON   |
++--------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select count(*) from emp;
++----------+
+| count(*) |
++----------+
+|       14 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from dept;
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select * from emp where deptno=20;
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7369 | SMITH | CLERK   | 7902 | 1980-12-17 |  800.00 | NULL |     20 |
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7876 | ADAMS | CLERK   | 7788 | 1983-01-12 | 1100.00 | NULL |     20 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp group by deptno;
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7782 | CLARK | MANAGER  | 7839 | 1981-06-09 | 2450.00 |   NULL |     10 |
+|  7369 | SMITH | CLERK    | 7902 | 1980-12-17 |  800.00 |   NULL |     20 |
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600.00 | 300.00 |     30 |
++-------+-------+----------+------+------------+---------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from emp order by deptno;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+
+| deptno | dname      | loc      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
+|     40 | OPERATIONS | BOSTON   |
++--------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> inssert into emp values ('8934','JOHN','WATCHMAN','7782','1972-01-23','1300',NULL,'50');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'inssert into emp values ('8934','JOHN','WATCHMAN','7782','1972-01-23','1300',...' at line 1
+mysql> INSERT INTO emp VALUES ('782','JOHN','WATCHMAN','7782','1982-01-23','1300.00',NULL,'50');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select emp.empno,emp.ename,emp.ename,emp.job,dep.dname from emp
+    -> inner join dep on emp.deptno=dep.deptno;
+ERROR 1146 (42S02): Table 'mydatab.dep' doesn't exist
+mysql> select emp.empno,emp.ename,emp.ename,emp.job,dept.dname from emp
+    -> inner join dept on emp.deptno=dept.deptno;
++-------+--------+--------+-----------+------------+
+| empno | ename  | ename  | job       | dname      |
++-------+--------+--------+-----------+------------+
+|  7369 | SMITH  | SMITH  | CLERK     | RESEARCH   |
+|  7499 | ALLEN  | ALLEN  | SALESMAN  | SALES      |
+|  7521 | WARD   | WARD   | SALESMAN  | SALES      |
+|  7566 | JONES  | JONES  | MANAGER   | RESEARCH   |
+|  7654 | MARTIN | MARTIN | SALESMAN  | SALES      |
+|  7698 | BLAKE  | BLAKE  | MANAGER   | SALES      |
+|  7782 | CLARK  | CLARK  | MANAGER   | ACCOUNTING |
+|  7788 | SCOTT  | SCOTT  | ANALYST   | RESEARCH   |
+|  7839 | KING   | KING   | PRESIDENT | ACCOUNTING |
+|  7844 | TURNER | TURNER | SALESMAN  | SALES      |
+|  7876 | ADAMS  | ADAMS  | CLERK     | RESEARCH   |
+|  7900 | JAMES  | JAMES  | CLERK     | SALES      |
+|  7902 | FORD   | FORD   | ANALYST   | RESEARCH   |
+|  7934 | MILLER | MILLER | CLERK     | ACCOUNTING |
++-------+--------+--------+-----------+------------+
+14 rows in set (0.00 sec)
+
+mysql> select emp.empno,emp.ename,emp.ename,emp.job,dept.dname from emp
+    -> left join dept on emp.deptno=dept.deptno;
++-------+--------+--------+-----------+------------+
+| empno | ename  | ename  | job       | dname      |
++-------+--------+--------+-----------+------------+
+|  7782 | CLARK  | CLARK  | MANAGER   | ACCOUNTING |
+|  7839 | KING   | KING   | PRESIDENT | ACCOUNTING |
+|  7934 | MILLER | MILLER | CLERK     | ACCOUNTING |
+|  7369 | SMITH  | SMITH  | CLERK     | RESEARCH   |
+|  7566 | JONES  | JONES  | MANAGER   | RESEARCH   |
+|  7788 | SCOTT  | SCOTT  | ANALYST   | RESEARCH   |
+|  7876 | ADAMS  | ADAMS  | CLERK     | RESEARCH   |
+|  7902 | FORD   | FORD   | ANALYST   | RESEARCH   |
+|  7499 | ALLEN  | ALLEN  | SALESMAN  | SALES      |
+|  7521 | WARD   | WARD   | SALESMAN  | SALES      |
+|  7654 | MARTIN | MARTIN | SALESMAN  | SALES      |
+|  7698 | BLAKE  | BLAKE  | MANAGER   | SALES      |
+|  7844 | TURNER | TURNER | SALESMAN  | SALES      |
+|  7900 | JAMES  | JAMES  | CLERK     | SALES      |
+|   782 | JOHN   | JOHN   | WATCHMAN  | NULL       |
++-------+--------+--------+-----------+------------+
+15 rows in set (0.00 sec)
+
+mysql> select emp.empno,emp.ename,emp.ename,emp.job,dept.dname from emp
+    -> right join dept on emp.deptno=dept.deptno;
++-------+--------+--------+-----------+------------+
+| empno | ename  | ename  | job       | dname      |
++-------+--------+--------+-----------+------------+
+|  7369 | SMITH  | SMITH  | CLERK     | RESEARCH   |
+|  7499 | ALLEN  | ALLEN  | SALESMAN  | SALES      |
+|  7521 | WARD   | WARD   | SALESMAN  | SALES      |
+|  7566 | JONES  | JONES  | MANAGER   | RESEARCH   |
+|  7654 | MARTIN | MARTIN | SALESMAN  | SALES      |
+|  7698 | BLAKE  | BLAKE  | MANAGER   | SALES      |
+|  7782 | CLARK  | CLARK  | MANAGER   | ACCOUNTING |
+|  7788 | SCOTT  | SCOTT  | ANALYST   | RESEARCH   |
+|  7839 | KING   | KING   | PRESIDENT | ACCOUNTING |
+|  7844 | TURNER | TURNER | SALESMAN  | SALES      |
+|  7876 | ADAMS  | ADAMS  | CLERK     | RESEARCH   |
+|  7900 | JAMES  | JAMES  | CLERK     | SALES      |
+|  7902 | FORD   | FORD   | ANALYST   | RESEARCH   |
+|  7934 | MILLER | MILLER | CLERK     | ACCOUNTING |
+|  NULL | NULL   | NULL   | NULL      | OPERATIONS |
++-------+--------+--------+-----------+------------+
+15 rows in set (0.00 sec)
+
+
+mysql> select emp.empno,emp.ename,emp.ename,emp.job,dept.dname from emp
+    -> left join dept on emp.deptno=dept.deptno
+    -> union
+    -> select emp.empno,emp.ename,emp.ename,emp.job,dept.dname from emp
+    -> right join dept on emp.deptno=dept.deptno;
++-------+--------+--------+-----------+------------+
+| empno | ename  | ename  | job       | dname      |
++-------+--------+--------+-----------+------------+
+|  7782 | CLARK  | CLARK  | MANAGER   | ACCOUNTING |
+|  7839 | KING   | KING   | PRESIDENT | ACCOUNTING |
+|  7934 | MILLER | MILLER | CLERK     | ACCOUNTING |
+|  7369 | SMITH  | SMITH  | CLERK     | RESEARCH   |
+|  7566 | JONES  | JONES  | MANAGER   | RESEARCH   |
+|  7788 | SCOTT  | SCOTT  | ANALYST   | RESEARCH   |
+|  7876 | ADAMS  | ADAMS  | CLERK     | RESEARCH   |
+|  7902 | FORD   | FORD   | ANALYST   | RESEARCH   |
+|  7499 | ALLEN  | ALLEN  | SALESMAN  | SALES      |
+|  7521 | WARD   | WARD   | SALESMAN  | SALES      |
+|  7654 | MARTIN | MARTIN | SALESMAN  | SALES      |
+|  7698 | BLAKE  | BLAKE  | MANAGER   | SALES      |
+|  7844 | TURNER | TURNER | SALESMAN  | SALES      |
+|  7900 | JAMES  | JAMES  | CLERK     | SALES      |
+|   782 | JOHN   | JOHN   | WATCHMAN  | NULL       |
+|  NULL | NULL   | NULL   | NULL      | OPERATIONS |
++-------+--------+--------+-----------+------------+
+16 rows in set (0.00 sec)
+
+mysql> select emp.ename,dept.dname from emp
+    -> cross join dept;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| SMITH  | ACCOUNTING |
+| SMITH  | RESEARCH   |
+| SMITH  | SALES      |
+| SMITH  | OPERATIONS |
+| ALLEN  | ACCOUNTING |
+| ALLEN  | RESEARCH   |
+| ALLEN  | SALES      |
+| ALLEN  | OPERATIONS |
+| WARD   | ACCOUNTING |
+| WARD   | RESEARCH   |
+| WARD   | SALES      |
+| WARD   | OPERATIONS |
+| JONES  | ACCOUNTING |
+| JONES  | RESEARCH   |
+| JONES  | SALES      |
+| JONES  | OPERATIONS |
+| MARTIN | ACCOUNTING |
+| MARTIN | RESEARCH   |
+| MARTIN | SALES      |
+| MARTIN | OPERATIONS |
+| BLAKE  | ACCOUNTING |
+| BLAKE  | RESEARCH   |
+| BLAKE  | SALES      |
+| BLAKE  | OPERATIONS |
+| CLARK  | ACCOUNTING |
+| CLARK  | RESEARCH   |
+| CLARK  | SALES      |
+| CLARK  | OPERATIONS |
+| SCOTT  | ACCOUNTING |
+| SCOTT  | RESEARCH   |
+| SCOTT  | SALES      |
+| SCOTT  | OPERATIONS |
+| KING   | ACCOUNTING |
+| KING   | RESEARCH   |
+| KING   | SALES      |
+| KING   | OPERATIONS |
+| TURNER | ACCOUNTING |
+| TURNER | RESEARCH   |
+| TURNER | SALES      |
+| TURNER | OPERATIONS |
+| ADAMS  | ACCOUNTING |
+| ADAMS  | RESEARCH   |
+| ADAMS  | SALES      |
+| ADAMS  | OPERATIONS |
+| JAMES  | ACCOUNTING |
+| JAMES  | RESEARCH   |
+| JAMES  | SALES      |
+| JAMES  | OPERATIONS |
+| FORD   | ACCOUNTING |
+| FORD   | RESEARCH   |
+| FORD   | SALES      |
+| FORD   | OPERATIONS |
+| MILLER | ACCOUNTING |
+| MILLER | RESEARCH   |
+| MILLER | SALES      |
+| MILLER | OPERATIONS |
+| JOHN   | ACCOUNTING |
+| JOHN   | RESEARCH   |
+| JOHN   | SALES      |
+| JOHN   | OPERATIONS |
++--------+------------+
+60 rows in set (0.00 sec)
