@@ -1,0 +1,22 @@
+1 ARRAYLIST OF STUDENTS AND DISPLAY USING AN ITERATOR
+--------------------------------------------------------------------------------------
+package method;
+
+import java.util.ArrayList;
+
+public class ArrayListProgram {
+
+	public static void main(String[] args) {
+		ArrayList<Object> arr=new ArrayList<Object>();
+		arr.add("A");
+		arr.add("Computer Science");
+		arr.add("3 year");
+		arr.add(0,"JANN");
+		arr.set(0,"SASMI");
+		System.out.println(arr.get(1));
+		for(Object data:arr) {
+			System.out.println(data);
+		}
+	}
+
+}
