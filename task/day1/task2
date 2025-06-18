@@ -1,0 +1,40 @@
+task2
+simple interest calculator using if
+----------------------------------------------
+ import java.util.Scanner;
+
+public class SimpleInterestCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        double principal, rate, time, interest;
+        System.out.print("Enter principal amount: ");
+        principal = scanner.nextDouble();
+
+        if (principal <= 0) {
+            System.out.println("Principal must be greater than 0.");
+            return;
+        }
+
+        System.out.print("Enter rate of interest (in %): ");
+        rate = scanner.nextDouble();
+
+        if (rate <= 0) {
+            System.out.println("Rate must be greater than 0.");
+            return;
+        }
+        System.out.print("Enter time (in years): ");
+        time = scanner.nextDouble();
+
+        if (time <= 0) {
+            System.out.println("Time must be greater than 0.");
+            return;
+        }
+
+        
+        interest = (principal * rate * time) / 100;
+
+       
+        System.out.println("Simple Interest = " + interest);
+    }
+}
