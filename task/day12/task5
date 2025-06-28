@@ -56,7 +56,7 @@ public class InventoryApp {
         }
     }
 
-    // Test the app
+    
     public static void main(String[] args) {
         InventoryApp app = new InventoryApp();
         app.addProduct(1, "Laptop", 999.99);
