@@ -34,7 +34,7 @@ public class StudentDBManager {
         }
     }
 
-    // Example usage
+     
     public static void main(String[] args) {
         StudentDBManager db = new StudentDBManager();
         db.insertStudent(1, "Alice", 21);
